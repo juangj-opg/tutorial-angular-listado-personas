@@ -11,23 +11,18 @@ import { PersonasService } from '../personas.service';
 export class FormularioComponent {
   constructor(
     private loggingService: LoggingService,
-    private personasService: PersonasService 
+    private personasService: PersonasService
   ) {
-    this.personasService.saludar.subscribe((indice: number) => alert("El indice es " + indice));
+    this.personasService.saludar.subscribe((indice: number) =>
+      alert('El indice es ' + indice)
+    );
   }
 
-  // nombreInput: string = '';
-  // apellidoInput: string = '';
-  @ViewChild('nombreInput') nombreInput: ElementRef;
-  @ViewChild('apellidoInput') apellidoInput: ElementRef;
+  nombreInput: string = '';
+  apellidoInput: string = '';
 
   agregarPersona() {
-    let persona1 = new Persona(
-      this.nombreInput.nativeElement.value,
-      this.apellidoInput.nativeElement.value
-    );
-    // this.loggingService.enviaMensajeAConsola("Enviamos persona: " + persona1.nombre + " " + persona1.apellido);
-    // this.personaCreada.emit(persona1);
+    let persona1 = new Persona(this.nombreInput, this.apellidoInput);
     this.personasService.agregarPersona(persona1);
   }
 }
