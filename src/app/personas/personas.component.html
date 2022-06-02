@@ -2,10 +2,6 @@
     <button style="cursor:pointer" (click)="agregar()">+</button>
 </div>
 
-
-    <app-formulario></app-formulario>
-  
-
 <div class="box">
     <app-persona
       *ngFor="let personaElemento of personas; let i = index"
@@ -14,3 +10,5 @@
     >
     </app-persona>
   </div>
+
+<router-outlet></router-outlet>
