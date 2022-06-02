@@ -8,7 +8,6 @@ export class PersonasService {
     new Persona('Juan', 'Garrido'),
     new Persona('David', 'Gómez'),
   ];
-
   saludar = new EventEmitter<number>();
 
   constructor(private loggingService: LoggingService) {}
@@ -28,9 +27,13 @@ export class PersonasService {
     return persona;
   }
 
-  modificarPersona(index:number, persona: Persona){
-      let persona1 = this.personas[index];
-      persona1.nombre = persona.nombre;
-      persona1.apellido = persona.apellido;
+  modificarPersona(index: number, persona: Persona) {
+    let persona1 = this.personas[index];
+    persona1.nombre = persona.nombre;
+    persona1.apellido = persona.apellido;
+  }
+
+  eliminarPersona(index: number) {
+      this.personas.splice(index, 1);
   }
 }
