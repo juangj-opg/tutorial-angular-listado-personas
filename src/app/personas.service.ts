@@ -5,10 +5,8 @@ import { Persona } from './persona.model';
 
 @Injectable()
 export class PersonasService {
-  personas: Persona[] = [
-    new Persona('Juan', 'Garrido'),
-    new Persona('David', 'Gómez'),
-  ];
+  personas: Persona[] = [];
+
   saludar = new EventEmitter<number>();
 
   constructor(
@@ -16,6 +14,17 @@ export class PersonasService {
     private dataServices: DataServices
   ) {}
 
+  //Lo usamos para iniciar el arreglo, ya que ya es asincrono desde la BD
+    //Se inicializa desde el compoente PersonasComponent    
+    setPersonas(personas: Persona[]){
+      this.personas = personas;
+  }
+
+  obtenerPersonas(){
+      console.log(this.dataServices.cargarPersonas());
+      return this.dataServices.cargarPersonas();
+  }
+  
   agregarPersona(persona: Persona) {
     this.loggingService.enviaMensajeAConsola(
       'Se ha agregado una nueva persona: ' +
@@ -23,6 +32,9 @@ export class PersonasService {
         ' ' +
         persona.apellido
     );
+    if(this.personas == null ) {
+      this.personas = [];
+    }
     this.personas.push(persona);
     this.dataServices.guardarPersonas(this.personas);
   }
