@@ -53,5 +53,14 @@ export class PersonasService {
 
   eliminarPersona(index: number) {
     this.personas.splice(index, 1);
+    this.dataServices.eliminarPersona(index);
+    // Se vuelve hacerle un save al array para actualizar los index de la BD
+    this.modificarPersonas();
+  }
+
+  modificarPersonas(){
+    if(this.personas != null){
+      this.dataServices.guardarPersonas(this.personas);
+    }
   }
 }
